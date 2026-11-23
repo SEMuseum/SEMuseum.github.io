@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>资讯动态 · 社企博物</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="news.html">
+
+<div class="langbar" id="langbar"></div>
+<header class="site-header" id="site-header"></header>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow" data-i18n="newsEyebrow">INSIGHTS</span>
+    <h1 data-i18n="newsTitle">资讯动态</h1>
+    <p data-i18n="newsLead"></p>
+  </div>
+</section>
+
+<section class="section section-white">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">CURATED COLLECTION</span>
+        <h2 class="section-title"><span class="lg-zh">社企流文章库</span><span class="lg-en">SE Insights Library</span></h2>
+      </div>
+      <p id="news-meta" class="news-meta"></p>
+    </div>
+
+    <p class="news-intro" id="news-intro"></p>
+
+    <div class="news-toolbar">
+      <div class="news-search">
+        <input type="text" id="news-search-input" data-i18n="newsSearch" placeholder="搜索标题、摘要或作者">
+        <button id="news-search-btn" data-i18n="searchBtn">检索</button>
+      </div>
+      <div class="news-selects">
+        <select id="news-year" aria-label="Year"><option value="all" data-i18n="newsAllYears">全部年份</option></select>
+        <select id="news-sort" aria-label="Sort">
+          <option value="new" data-i18n="newsSortNew">最新发布</option>
+          <option value="old" data-i18n="newsSortOld">最早发布</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="news-status">
+      <span id="news-count"></span>
+      <span class="news-tip" id="news-tip"></span>
+    </div>
+
+    <div class="news-grid" id="news-grid"></div>
+
+    <div class="news-empty" id="news-empty" hidden>
+      <h3 data-i18n="newsEmpty"></h3>
+      <p data-i18n="newsEmptyTip"></p>
+    </div>
+
+    <div class="news-more-wrap">
+      <button id="news-more" class="btn btn-outline" data-i18n="newsLoad"></button>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/news.js"></script>
+</body>
+</html>
