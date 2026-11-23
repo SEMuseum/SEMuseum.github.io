@@ -33,7 +33,7 @@
   var state={
     db:'all', q:'', filters:{}, sort:'relevance', page:1, pageSize:18,
     meta:[], dbMap:{}, cache:{}, detailCache:{}, idmap:null, orgIndexPromise:null, orgIndex:null,
-    allData:[], results:[], filterFields:[]
+    allData:[], results:[], filterFields:[], loadBatch:0
   };
 
   function esc(s){
@@ -193,15 +193,22 @@
     document.getElementById('load-more').style.display='none';
 
     var keys=state.db==='all'?state.meta.map(function(m){return m.key;}):[state.db];
-    Promise.all(keys.map(loadDb)).then(function(groups){
-      var merged=[];
-      groups.forEach(function(g){merged=merged.concat(g);});
-      state.allData=merged;
-      determineFilterFields();
-      buildFilterPanel();
-      setStatus('');
-      runSearch();
-    }).catch(function(err){setStatus('数据加载失败：'+err.message);});
+    // 按已缓存优先、文件体积小的先加载，实现渐进式渲染：小库到位即先出结果，大库后台补齐
+    var ordered=keys.slice().sort(function(a,b){
+      var ca=state.cache[a]?0:1, cb=state.cache[b]?0:1;
+      if(ca!==cb) return ca-cb;
+      var sa=(state.dbMap[a]&&state.dbMap[a].count)||0, sb=(state.dbMap[b]&&state.dbMap[b].count)||0;
+      return sa-sb;
+    });
+    var batch=++state.loadBatch;
+    ordered.forEach(function(k){
+      loadDb(k).then(function(){
+        if(batch!==state.loadBatch) return; // 已切换到新批次，丢弃旧结果
+        state.allData=[];
+        keys.forEach(function(kk){if(state.cache[kk]) state.allData=state.allData.concat(state.cache[kk]);});
+        determineFilterFields(); buildFilterPanel(); setStatus(''); runSearch();
+      }).catch(function(err){ setStatus('数据加载失败：'+err.message); });
+    });
   }
 
   /* ---------- 筛选字段自动识别 ---------- */
