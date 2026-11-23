@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据资源 · 社企博物</title>
+<meta name="description" content="检索社企博物开放的社会企业知识库，跨库查询文献、机构、人物、活动等数据。">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="data.html">
+
+<div class="langbar" id="langbar"></div>
+<header class="site-header" id="site-header"></header>
+
+<!-- 页头 -->
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow" data-i18n="dataEyebrow">DATA RESOURCES</span>
+    <h1 data-i18n="dataTitle">数据资源</h1>
+    <p><span class="lg-zh">开放共享的社会企业知识库，10 万+ 条结构化数据，覆盖 15 个国家与地区。支持跨库检索与关联导航。</span><span class="lg-en">An open knowledge base with 100,000+ structured records across 15 countries — cross-database search and linked navigation.</span></p>
+  </div>
+</section>
+
+<!-- 检索区 -->
+<section class="search-hero">
+  <div class="container">
+    <h1><span class="lg-zh">检索社会企业知识库</span><span class="lg-en">Search the Knowledge Base</span></h1>
+    <p><span class="lg-zh">输入关键词，在文献、机构、人物、活动等数据库中查找，并可沿关联字段跳转发现更多。</span><span class="lg-en">Enter a keyword to search documents, organizations, people and activities — then follow linked fields to discover more.</span></p>
+    <div class="search-box-wrap">
+      <div class="search-box">
+        <span class="s-icon">🔍</span>
+        <input type="text" id="search-input" data-i18n="searchPlaceholder" placeholder="搜索社会企业、ESG、可持续相关关键词……" autocomplete="off">
+        <button id="search-btn" data-i18n="searchBtn">检索</button>
+      </div>
+    </div>
+    <div class="db-tabs" id="db-tabs"></div>
+  </div>
+</section>
+
+<!-- 检索结果 -->
+<section class="search-main">
+  <div class="container">
+    <div class="search-toolbar">
+      <div class="result-count" id="result-count"></div>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <button class="filter-chip" id="filter-toggle">⚙ <span data-i18n="filters">筛选</span></button>
+        <select class="sort-select" id="sort-select">
+          <option value="relevance" data-i18n="sortRelevance">相关度</option>
+          <option value="latest" data-i18n="sortLatest">最新</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="filter-panel" id="filter-panel"></div>
+    <div class="active-filters" id="active-filters"></div>
+
+    <div class="data-status" id="data-status"><div class="spinner"></div><span data-i18n="loading">正在加载数据…</span></div>
+    <div class="results" id="results"></div>
+    <div class="load-more" id="load-more" style="display:none">
+      <button id="load-more-btn" data-i18n="loadMore">加载更多</button>
+    </div>
+  </div>
+</section>
+
+<!-- 详情弹窗 -->
+<div class="detail-overlay" id="detail-overlay">
+  <div class="detail-modal" id="detail-modal"></div>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/search.js"></script>
+</body>
+</html>
