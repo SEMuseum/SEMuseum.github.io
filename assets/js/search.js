@@ -32,7 +32,7 @@
 
   var state={
     db:'all', q:'', filters:{}, sort:'relevance', page:1, pageSize:18,
-    meta:[], dbMap:{}, cache:{}, detailCache:{}, idmap:null,
+    meta:[], dbMap:{}, cache:{}, detailCache:{}, idmap:null, orgIndexPromise:null, orgIndex:null,
     allData:[], results:[], filterFields:[]
   };
 
@@ -93,6 +93,23 @@
     return loadJson('data/'+key+'-detail.json').then(function(obj){
       state.detailCache[key]=obj||{};
       return state.detailCache[key];
+    });
+  }
+  // 机构库详情按分片加载：先读 ID→分片索引，再只加载对应分片，避免单次下载超大文件
+  function loadDetailForId(key,id){
+    if(key!=='organizations') return loadDetailFile(key);
+    if(!state.orgIndexPromise){
+      state.orgIndexPromise=loadJson('data/org-detail-index.json').then(function(idx){state.orgIndex=idx||{};return state.orgIndex;});
+    }
+    return state.orgIndexPromise.then(function(idx){
+      var shard=idx[id];
+      if(shard===undefined) return {};
+      var ck='org-shard-'+shard;
+      if(state.detailCache[ck]) return state.detailCache[ck];
+      return loadJson('data/organizations-detail-'+shard+'.json').then(function(obj){
+        state.detailCache[ck]=obj||{};
+        return state.detailCache[ck];
+      });
     });
   }
   function loadIdmap(){
@@ -371,7 +388,7 @@
     var modal=document.getElementById('detail-modal');
     overlay.classList.add('show');
     modal.innerHTML='<div class="detail-loading">'+esc(typeof t==='function'?t('loading'):'正在加载…')+'</div>';
-    Promise.all([loadDetailFile(db),loadIdmap()]).then(function(res){
+    Promise.all([loadDetailForId(db,id),loadIdmap()]).then(function(res){
       var detail=res[0], idmap=res[1];
       var rec=detail[id];
       if(!rec){modal.innerHTML='<div class="detail-loading">未找到该记录</div>';return;}
