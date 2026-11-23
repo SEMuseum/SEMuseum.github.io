@@ -1,0 +1,123 @@
+[
+ {
+  "key": "documents",
+  "name": "文献库",
+  "name_en": "Documents",
+  "count": 50693,
+  "size_kb": 25720.2,
+  "filters": [
+   "Year-年",
+   "Type-类型",
+   "内容类型",
+   "领域",
+   "地域"
+  ]
+ },
+ {
+  "key": "events",
+  "name": "事件库",
+  "name_en": "Events",
+  "count": 302,
+  "size_kb": 213.6,
+  "filters": [
+   "年份",
+   "月份",
+   "所在省",
+   "所在市"
+  ]
+ },
+ {
+  "key": "activities",
+  "name": "活动库",
+  "name_en": "Activities",
+  "count": 3518,
+  "size_kb": 2436.2,
+  "filters": [
+   "年份",
+   "活动类型",
+   "活动形式",
+   "活动标签",
+   "活动所在国家",
+   "活动所在省",
+   "活动所在市"
+  ]
+ },
+ {
+  "key": "organizations",
+  "name": "机构库",
+  "name_en": "Organizations",
+  "count": 42142,
+  "size_kb": 61647.0,
+  "filters": [
+   "所在国家",
+   "所属省份",
+   "所属城市",
+   "领域",
+   "所属行业",
+   "类型",
+   "认定类型",
+   "经营状态",
+   "SDGs",
+   "成立年份",
+   "级别"
+  ]
+ },
+ {
+  "key": "people",
+  "name": "人物库",
+  "name_en": "People",
+  "count": 7408,
+  "size_kb": 3626.6,
+  "filters": [
+   "所属国家",
+   "身份",
+   "所在机构"
+  ]
+ },
+ {
+  "key": "vocabularies",
+  "name": "名词库",
+  "name_en": "Vocabularies",
+  "count": 164,
+  "size_kb": 64.4,
+  "filters": []
+ },
+ {
+  "key": "opinions",
+  "name": "观点库",
+  "name_en": "Opinions",
+  "count": 86,
+  "size_kb": 210.9,
+  "filters": []
+ },
+ {
+  "key": "pictures",
+  "name": "影像库",
+  "name_en": "Pictures",
+  "count": 63,
+  "size_kb": 28.5,
+  "filters": [
+   "资料类型"
+  ]
+ },
+ {
+  "key": "objects",
+  "name": "实物库",
+  "name_en": "Objects",
+  "count": 1,
+  "size_kb": 0.1,
+  "filters": []
+ },
+ {
+  "key": "products",
+  "name": "产品服务",
+  "name_en": "Products & Services",
+  "count": 819,
+  "size_kb": 1828.7,
+  "filters": [
+   "产品类别",
+   "所属企业",
+   "使用场景"
+  ]
+ }
+]
